@@ -23,15 +23,15 @@ export default function (api: any) {
     const cfg = api.config?.plugins?.entries?.[PLUGIN_ID]?.config ?? {};
     const dbPath: string | undefined = cfg.lanceDbPath?.trim();
 
+    const logger = {
+        info: (msg: string) => api.log?.info?.(`[my-fitness] ${msg}`) ?? console.log(`[my-fitness] ${msg}`),
+        warn: (msg: string) => api.log?.warn?.(`[my-fitness] ${msg}`) ?? console.warn(`[my-fitness] ${msg}`),
+    };
+
     if (!dbPath) {
-        api.log.warn("[my-fitness] 未配置 lanceDbPath，插件无法启动");
+        logger.warn("未配置 lanceDbPath，插件无法启动");
         return;
     }
-
-    const logger = {
-        info: (msg: string) => api.log.info(`[my-fitness] ${msg}`),
-        warn: (msg: string) => api.log.warn(`[my-fitness] ${msg}`),
-    };
 
     // 异步初始化数据库（不阻塞插件注册）
     (async () => {
