@@ -1,7 +1,7 @@
 node_modules/
 dist/
 .github/
-data/
+docs/
 *.js
 *.js.map
 *.d.ts
