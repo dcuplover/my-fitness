@@ -1,0 +1,25 @@
+node_modules/
+dist/
+*.js
+*.js.map
+*.d.ts
+!types.d.ts
+
+# LanceDB 数据文件
+*.lance
+*.lance-tmp/
+lancedb_data/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*

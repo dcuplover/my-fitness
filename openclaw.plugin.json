@@ -1,0 +1,44 @@
+{
+  "id": "my-fitness",
+  "name": "my-fitness",
+  "description": "减脂助手插件 - 家庭健康管理、饮食记录、运动计划、采购清单、成本跟踪",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "lanceDbPath": {
+        "type": "string",
+        "description": "LanceDB 数据库存储路径"
+      },
+      "defaultMemberId": {
+        "type": "string",
+        "description": "默认家庭成员 ID（简化单人使用场景）"
+      },
+      "calorieWarningThreshold": {
+        "type": "number",
+        "minimum": 500,
+        "description": "每日热量超标警告阈值 (kcal)，默认 2500"
+      },
+      "lowStockThreshold": {
+        "type": "number",
+        "minimum": 0,
+        "description": "食材低库存预警阈值 (g)，默认 100"
+      },
+      "expiryWarningDays": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "食材过期预警天数，默认 3"
+      },
+      "costCurrency": {
+        "type": "string",
+        "description": "货币单位，默认 CNY"
+      },
+      "seedRecipesPath": {
+        "type": "string",
+        "description": "预置菜谱 JSON 文件路径，默认为插件目录下的 data/seed-recipes.json"
+      }
+    },
+    "required": ["lanceDbPath"]
+  }
+}

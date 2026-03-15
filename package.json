@@ -1,0 +1,15 @@
+{
+  "name": "my-fitness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenClaw 减脂助手插件 - 家庭健康管理、饮食记录、运动计划、成本跟踪",
+  "dependencies": {
+    "@lancedb/lancedb": "^0.22.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  }
+}
