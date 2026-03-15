@@ -21,13 +21,19 @@ export async function getDb(dbPath: string) {
 
 /**
  * 获取指定表（带缓存）
+ * 为原生 table 补充 filter 便捷方法: table.filter(where) => table.query().where(where)
  */
 export async function getTable(dbPath: string, tableName: string): Promise<LanceDbTable> {
     const cacheKey = `${dbPath}::${tableName}`;
     let table = tableCache.get(cacheKey);
     if (!table) {
         const db = await getDb(dbPath);
-        table = await db.openTable(tableName);
+        const raw = await db.openTable(tableName);
+        // LanceDB 0.22+ 不再提供 table.filter()，用 query().where() 模拟
+        if (typeof (raw as any).filter !== "function") {
+            (raw as any).filter = (where: string) => (raw as any).query().where(where);
+        }
+        table = raw;
         tableCache.set(cacheKey, table);
     }
     return table;
